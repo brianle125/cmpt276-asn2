@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 5000
 const { Pool } = require('pg');
 var pool;
 pool = new Pool({
-    connectionString: process.env.DATABASE_URL || 'postgres://postgres:killllik@localhost/asn2'
+    connectionString: process.env.DATABASE || 'postgres://postgres:killllik@localhost/asn2'
 })
 
 var app = express()
@@ -19,8 +19,7 @@ app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/index'))
 app.get('/rectangles', (req,res)=>{
     // let data = { results: [1,2,3,4,5]};
-    // res.render('pages/db')
-    var getUsersQuery = 'SELECT * FROM rectangles;';
+    var getUsersQuery = 'SELECT * FROM rectangles';
     pool.query(getUsersQuery, (error,result) => {
         if(error) {
             res.send(error);
