@@ -22,7 +22,6 @@ app.get('/rectangles', (req,res)=>{
     var getUsersQuery = 'SELECT * FROM rectangles';
     pool.query(getUsersQuery, (error,result) => {
         if(error) {
-            console.log('it did not work');
             res.send(error);
         }
         data = {results : result.rows}; //array of rows
