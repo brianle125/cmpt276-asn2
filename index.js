@@ -18,7 +18,7 @@ app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/index'))
 app.get('/rectangles', (req,res)=>{
     // let data = { results: [1,2,3,4,5]};
-    var getUsersQuery = `SELECT * FROM rectangles`;
+    getUsersQuery = `SELECT * FROM rectangles`;
     pool.query(getUsersQuery, (error,result) => {
         if(error) {
             res.send(error);
