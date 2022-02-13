@@ -21,8 +21,9 @@ app.get('/rectangles', (req,res)=>{
     // let data = { results: [1,2,3,4,5]};
     var getUsersQuery = 'SELECT * FROM rectangles';
     pool.query(getUsersQuery, (error,result) => {
-        if(error)
-            res.end(error);
+        if(error) {
+            res.send(error);
+        }
         data = {results : result.rows}; //array of rows
         res.render('pages/db', data);
     })
@@ -55,17 +56,20 @@ app.get('/test/:id', (req,res)=>{ //something something rectangles ids
 app.get('/rectangles/new', (req,res)=> {
     res.render('pages/newrectangle')
     
-    // let id = req.body.rId;
-    // let name = req.body.rName;
-    // let width = req.body.rWidth;
-    // let height = req.body.rHeight;
-    // let color = req.body.rColor;
+    let id = req.body.rId;
+    let name = req.body.rName;
+    let width = req.body.rWidth;
+    let height = req.body.rHeight;
+    let color = req.body.rColor;
 
-    // var userAddRectangleQuery = `INSERT INTO rectangles VALUES (${id},'${name}',${width},${height},'${color}')`;
-    // pool.query(userAddRectangleQuery, (error,result) => {
-    //     if(error)
-    //     res.send(error)
-    // })
+    function func() {
+        var userAddRectangleQuery = `INSERT INTO rectangles VALUES (${id},'${name}',${width},${height},'${color}')`;
+        pool.query(userAddRectangleQuery, (error,result) => {
+            if(error)
+            res.send(error);
+        })
+    }
+
 })
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
