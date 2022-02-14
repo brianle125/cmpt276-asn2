@@ -62,7 +62,6 @@ app.post('/addrectangle', (req, res) =>{
   pool.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`,
     (err, res) => {
       console.log(err, res);
-      pool.end();
     }
   );
 })
