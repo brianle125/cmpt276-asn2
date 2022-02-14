@@ -58,8 +58,9 @@ app.post('/addrectangle', (req, res) =>{
   let width = req.body.rWidth;
   let height = req.body.rHeight;
   let color = req.body.rColor;
-  tableIDQuery =  `SELECT * FROM users WHERE name = '${id}'`;
-  pool.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`,
+
+  const client = pool.connect();
+  client.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`,
     (err, res) => {
       console.log(err, res);
     }
