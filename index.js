@@ -17,14 +17,15 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/index'))
 app.get('/database', (req,res)=>{
-    getUsersQuery = `SELECT * FROM rectangles`;
-    pool.query(getUsersQuery, (error,result) => {
-        if(error) {
-            res.send(error);
-        }
-        data = {results : result.rows}; //array of rows
-        res.render('pages/db', data);
-    })
+    res.render('pages/db');
+    // getUsersQuery = `SELECT * FROM rectangles`;
+    // pool.query(getUsersQuery, (error,result) => {
+    //     if(error) {
+    //         res.send(error);
+    //     }
+    //     data = {results : result.rows}; //array of rows
+    //     res.render('pages/db', data);
+    // })
 })
 /*
 app.get('/database', async (req,res)=>{
