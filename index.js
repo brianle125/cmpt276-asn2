@@ -52,6 +52,9 @@ app.post('/login', (req,res)=> {
     userPasswordQuery =  `SELECT * FROM users WHERE name = '${un}'`;
     res.send('got it.')
 })
+app.post('/addrectangle', (req, res) =>{
+  console.log('lol')
+})
 
 app.get('/test/:id', (req,res)=>{ //something something rectangles ids
     console.log(req.params.id);
