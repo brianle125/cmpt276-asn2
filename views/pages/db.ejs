@@ -5,26 +5,24 @@
 </head>
 
 <body>
-
-<div class="container">
-<h1>RECTANGLE LIST</h1>
-<table id ="rectangleList">
-  <tr>
-    <th>Number</th>
-    <th>Name</th>
-    <th>Color</th>
-  </tr>
-    <% results.forEach(function(r) { %>
+  <%- include ("../partials/nav.ejs") %>
+  <div class="container">
+  <h1>RECTANGLE LIST</h1>
+  <table id ="rectangleList">
     <tr>
-      <td><%= r.id %></td>
-      <td><a href=""><%= r.name %></a></td>
-      <td><%= r.color %></td>
+      <th>Name</th>
+      <th>Color</th>
     </tr>
-  <% }); %>
-  
+      <% results.forEach(function(r) { %>
+      <tr>
+        <td><a href=""><%= r.name %></a></td>
+        <td><%= r.color %></td>
+      </tr>
+    <% }); %>
+    
 </table>
 
-<button><a href="/rectangles/new">Add a new rectangle</a></button>
+<button><a href="/add">Add a new rectangle</a></button>
 
 
 

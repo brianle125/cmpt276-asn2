@@ -25,8 +25,19 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+table {
+  width: 50%;
+}
 
-table, th, td {
+th, td {
   border: 1px solid black;
-  padding: 2px;
+  padding: 5px;
+}
+
+form {
+  margin: 5px;
+}
+
+.return {
+  margin: 5px;
 }

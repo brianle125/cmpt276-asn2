@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:false}))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/index'))
-app.get('/rectangles', (req,res)=>{
+app.get('/database', (req,res)=>{
     getUsersQuery = `SELECT * FROM rectangles`;
     pool.query(getUsersQuery, (error,result) => {
         if(error) {
@@ -51,7 +51,7 @@ app.get('/test/:id', (req,res)=>{ //something something rectangles ids
     console.log(req.params.id);
 
 })
-app.get('/rectangles/new', (req,res)=> {
+app.get('/add', (req,res)=> {
     res.render('pages/newrectangle')
     
     let id = req.body.rId;
