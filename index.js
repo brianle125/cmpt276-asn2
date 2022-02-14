@@ -58,12 +58,14 @@ app.post('/addrectangle', (req, res)=> {
     let width = req.body.rWidth;
     let height = req.body.rHeight;
     let color = req.body.rColor;
-
-    var userAddRectangleQuery = `INSERT INTO rects VALUES (${id},'${name}',${width},${height},'${color}')`;
-    pool.query(userAddRectangleQuery, (error,result) => {
-        if(error)
-        res.send(error);
-    })
+    try {
+        const client = await pool.connect();
+        const result = await client.query(`INSERT INTO rects VALUES (${id},'${name}',${width},${height},'${color}')`);
+        client.release();
+      } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+      }
 })
 app.get('/test/:id', (req,res)=>{ //something something rectangles ids
     console.log(req.params.id);
