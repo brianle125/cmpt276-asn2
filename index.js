@@ -52,27 +52,25 @@ app.post('/login', (req,res)=> {
     userPasswordQuery =  `SELECT * FROM users WHERE name = '${un}'`;
     res.send('got it.')
 })
-app.get('/test/:id', (req,res)=>{ //something something rectangles ids
-    console.log(req.params.id);
-
-})
-app.get('/add', (req,res)=> {
-    res.render('pages/newrectangle')
-    
+app.post('/addrectangle', (req, res)=> {
     let id = req.body.rId;
     let name = req.body.rName;
     let width = req.body.rWidth;
     let height = req.body.rHeight;
     let color = req.body.rColor;
 
-    function func() {
-        var userAddRectangleQuery = `INSERT INTO rectangles VALUES (${id},'${name}',${width},${height},'${color}')`;
-        pool.query(userAddRectangleQuery, (error,result) => {
-            if(error)
-            res.send(error);
-        })
-    }
+    var userAddRectangleQuery = `INSERT INTO rects VALUES (${id},'${name}',${width},${height},'${color}')`;
+    pool.query(userAddRectangleQuery, (error,result) => {
+        if(error)
+        res.send(error);
+    })
+})
+app.get('/test/:id', (req,res)=>{ //something something rectangles ids
+    console.log(req.params.id);
 
+})
+app.get('/add', (req,res)=> {
+    res.render('pages/newrectangle')
 })
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
