@@ -3,9 +3,12 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 
 const { Pool } = require('pg');
-var pool = new Pool({
-    connectionString:  process.env.DATABASE_URL || 'postgres://postgres:killllik@localhost/asn2'
-})
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 var app = express()
   
@@ -16,16 +19,17 @@ app.use(express.urlencoded({extended:false}))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/index'))
-app.get('/database', (req,res)=>{
-    res.render('pages/db');
-    // getUsersQuery = `SELECT * FROM rectangles`;
-    // pool.query(getUsersQuery, (error,result) => {
-    //     if(error) {
-    //         res.send(error);
-    //     }
-    //     data = {results : result.rows}; //array of rows
-    //     res.render('pages/db', data);
-    // })
+app.get('/database', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM rects');
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
 })
 /*
 app.get('/database', async (req,res)=>{
