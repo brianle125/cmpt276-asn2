@@ -53,15 +53,15 @@ app.post('/login', (req,res)=> {
     res.send('got it.')
 })
 app.post('/addrectangle', async (req, res) =>{
-  let id = req.body.rId;
-  let name = req.body.rName;
-  let width = req.body.rWidth;
-  let height = req.body.rHeight;
-  let color = req.body.rColor;
+  let id = req.body.id;
+  let name = req.body.name;
+  let width = req.body.width;
+  let height = req.body.height;
+  let color = req.body.color;
 
   try {
     const client = await pool.connect();
-    const result = await client.query(`INSERT INTO rects VALUES(3, 'Bob', 4, 5, 'red')`);
+    const result = await client.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`);
     client.release();
     res.render('pages/db');
   } catch (err) {
