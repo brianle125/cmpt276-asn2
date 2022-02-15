@@ -75,7 +75,6 @@ app.get('/redirect', (req, res) => {
 
 app.get('/test/:id', (req,res)=>{ //something something rectangles ids
     console.log(req.params.id);
-
 })
 app.get('/add', (req,res)=> {
     res.render('pages/newrectangle')
