@@ -7,10 +7,11 @@
 <body>
   <%- include ("../partials/nav.ejs") %>
   <div class="container">
-  <!-- display rect -->
-  <svg>
-    <rect width="300" height="100" style="fill:blue"></rect>
-</svg> 
+      <% results.forEach(function(r) { %)>
+        <svg>
+            <rect width="<%= r.width %>" height="<%= r.height %>" style="fill:blue"></rect>
+        </svg> 
+      <% }); %>
 <table>
     <tr>
       <th>ID</th>
