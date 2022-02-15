@@ -11,21 +11,14 @@
   <svg>
     <rect width="300" height="100" style="fill:blue"></rect>
 </svg> 
-  <table id ="rectangleList">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Width</th>
-      <th>Height</th>
-      <th>Color</th>
-    </tr>
-      <td></td>
-      <td><%= name %></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </table>
+<ul>
+    <% results.forEach(function(r) { %>
+        <li><%= r.id %></li>
+        <li><a href="/rectangles/:name"><%= r.name %></a></li>
+        <li><%= r.color %></li>
+      </tr>
+    <% }); %>
+</ul>
   <button><a href="/database">Return</a></button>
   </div>
 </body>
