@@ -43,7 +43,7 @@ app.get('/database', async (req,res)=>{
     }
 })
     */
-app.post('/login', (req,res)=> {
+app.post('/login', async (req,res)=> {
     console.log("post to /login")
     console.log(req.body)
     let un = req.body.uname;
@@ -59,12 +59,14 @@ app.post('/addrectangle', (req, res) =>{
   let height = req.body.rHeight;
   let color = req.body.rColor;
 
-  const client = pool.connect();
-  client.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`,
-    (err, res) => {
-      console.log(err, res);
-    }
-  );
+  try {
+    const client = await pool.connect();
+    const result = await client.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`);
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
 })
 
 app.get('/test/:id', (req,res)=>{ //something something rectangles ids
