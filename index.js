@@ -43,7 +43,7 @@ app.get('/database', async (req,res)=>{
     }
 })
     */
-app.post('/login', async (req,res)=> {
+app.post('/login', (req,res)=> {
     console.log("post to /login")
     console.log(req.body)
     let un = req.body.uname;
@@ -52,7 +52,7 @@ app.post('/login', async (req,res)=> {
     userPasswordQuery =  `SELECT * FROM users WHERE name = '${un}'`;
     res.send('got it.')
 })
-app.post('/addrectangle', (req, res) =>{
+app.post('/addrectangle', async (req, res) =>{
   let id = req.body.rId;
   let name = req.body.rName;
   let width = req.body.rWidth;
