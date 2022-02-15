@@ -13,9 +13,10 @@
 </svg> 
 <ul>
     <% results.forEach(function(r) { %>
-        <li><%= r.id %></li>
-        <li><a href="/rectangles/:name"><%= r.name %></a></li>
-        <li><%= r.color %></li>
+        <li>Name: <%= r.name %></li>
+        <li>Width: <%= r.width %></li>
+        <li>Height: <%= r.height %></li>
+        <li>Color: <%= r.color %></li>
       </tr>
     <% }); %>
 </ul>
