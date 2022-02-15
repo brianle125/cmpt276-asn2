@@ -61,7 +61,7 @@ app.post('/addrectangle', async (req, res) =>{
 
   try {
     const client = await pool.connect();
-    const result = await client.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`);
+    const result = await client.query(`INSERT INTO rects VALUES(2, 'Greg', 3, 4, 'green')`);
     client.release();
   } catch (err) {
     console.error(err);
