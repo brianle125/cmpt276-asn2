@@ -7,11 +7,9 @@
 <body>
   <%- include ("../partials/nav.ejs") %>
   <div class="container">
-      <% results.forEach(function(r) { %)>
-        <svg>
-            <rect width="<%= r.width %>" height="<%= r.height %>" style="fill:blue"></rect>
-        </svg> 
-      <% }); %>
+  <svg>
+    <rect width="300" height="100" style="fill:blue"></rect>
+</svg> 
 <table>
     <tr>
       <th>ID</th>
@@ -22,7 +20,7 @@
     </tr>
     <% results.forEach(function(r) { %>
       <td><%= r.id %></td>
-      <td><a href=""><%= r.name %></a></td>
+      <td><a href="rectangle/"><%= r.name %></a></td>
       <td><%= r.width %></td>
       <td><%= r.height %></td>
       <td><%= r.color %></td>
