@@ -80,5 +80,17 @@ app.get('/test/:id', (req,res)=>{ //something something rectangles ids
 app.get('/add', (req,res)=> {
     res.render('pages/newrectangle')
 })
+app.get('/view', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT * FROM rects');
+    const results = { 'results': (result) ? result.rows : null};
+    res.render('pages/rectangles', results );
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))

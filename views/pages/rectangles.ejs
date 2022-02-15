@@ -17,12 +17,13 @@
     <% results.forEach(function(r) { %>
       <td><%= r.id %></td>
       <td><a href=""><%= r.name %></a></td>
+      <td><%= r.weight %></td>
+      <td><%= r.height %></td>
       <td><%= r.color %></td>
     </tr>
   <% }); %>
   </table>
-  <button><a href="/add">Add a new rectangle</a></button>
-  <button><a href="/view">See rectangle details</a></button>
+  <button><a href="/database">Return</a></button>
   </div>
 </body>
 </html>
