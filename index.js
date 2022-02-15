@@ -76,7 +76,7 @@ app.get('/rectangles/:name', async (req,res)=>{ //something something rectangles
   var name = req.params.name;
   try {
     const client = await pool.connect();
-    const result = await client.query(`SELECT * FROM rects WHERE name = ${name}`);
+    const result = await client.query(`SELECT * FROM rects WHERE name = '${name}'`);
     const results = { 'results': (result) ? result.rows : null};
     res.render('pages/rectangle', results );
     client.release();
