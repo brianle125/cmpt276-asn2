@@ -76,6 +76,18 @@ app.get('/redirect', (req, res) => {
 app.get('/rectangles/:name', (req,res)=>{ //something something rectangles ids
     res.render('pages/rectangle', {name: req.params.name});
 })
+app.get('/rectangles/:id', (req,res)=>{ //something something rectangles ids
+  try {
+    const client = await pool.connect();
+    const result = await client.query(`SELECT * FROM rects WHERE id = ${req.params.id}`);
+    const results = { 'results': (result) ? result.rows : null};
+    res.render('pages/rectangles', results );
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
 app.get('/add', (req,res)=> {
     res.render('pages/newrectangle')
 })
