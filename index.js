@@ -73,8 +73,8 @@ app.get('/redirect', (req, res) => {
   res.render('pages/index');
 }) 
 
-app.get('/test/:id', (req,res)=>{ //something something rectangles ids
-    console.log(req.params.id);
+app.get('/rectangles/:name', (req,res)=>{ //something something rectangles ids
+    res.render('pages/rectangle', {name: req.params.name});
 })
 app.get('/add', (req,res)=> {
     res.render('pages/newrectangle')
