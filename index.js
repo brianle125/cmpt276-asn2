@@ -73,9 +73,10 @@ app.get('/redirect', (req, res) => {
   res.render('pages/index');
 }) 
 app.get('/rectangles/:name', async (req,res)=>{ //something something rectangles ids
+  var name = req.params.name;
   try {
     const client = await pool.connect();
-    const result = await client.query(`SELECT * FROM rects WHERE name = ${req.params.name}`);
+    const result = await client.query(`SELECT * FROM rects WHERE name = ${name}`);
     const results = { 'results': (result) ? result.rows : null};
     res.render('pages/rectangle', results );
     client.release();
