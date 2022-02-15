@@ -11,15 +11,23 @@
   <svg>
     <rect width="300" height="100" style="fill:blue"></rect>
 </svg> 
-<ul>
+<table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Width</th>
+      <th>Height</th>
+      <th>Color</th>
+    </tr>
     <% results.forEach(function(r) { %>
-        <li>Name: <%= r.name %></li>
-        <li>Width: <%= r.width %></li>
-        <li>Height: <%= r.height %></li>
-        <li>Color: <%= r.color %></li>
-      </tr>
+      <td><%= r.id %></td>
+      <td><a href=""><%= r.name %></a></td>
+      <td><%= r.width %></td>
+      <td><%= r.height %></td>
+      <td><%= r.color %></td>
+    </tr>
     <% }); %>
-</ul>
+  </table>
   <button><a href="/database">Return</a></button>
   </div>
 </body>
