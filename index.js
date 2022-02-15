@@ -72,9 +72,7 @@ app.post('/addrectangle', async (req, res) =>{
 app.get('/redirect', (req, res) => {
   res.render('pages/index');
 }) 
-app.get('/rectangles/:name', (req,res)=>{ //something something rectangles ids
-    res.render('pages/rectangle', {name: req.params.name});
-})
+
 app.get('/rectangles/:id', (req,res)=>{ //something something rectangles ids
   try {
     const client = await pool.connect();
