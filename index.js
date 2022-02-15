@@ -52,21 +52,30 @@ app.post('/login', (req,res)=> {
     userPasswordQuery =  `SELECT * FROM users WHERE name = '${un}'`;
     res.send('got it.')
 })
-app.post('/addrectangle', async (req, res) =>{
+app.post('/addrectangle', (req, res) =>{
   let id = req.body.rId;
   let name = req.body.rName;
   let width = req.body.rWidth;
   let height = req.body.rHeight;
   let color = req.body.rColor;
 
-  try {
-    const client = await pool.connect();
-    const result = await client.query(`INSERT INTO rects VALUES(2, 'Greg', 3, 4, 'green')`);
-    client.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
+  pool.query(
+    "INSERT INTO rects(id, name, width, height, color)VALUES(2, 'Mary Ann', 2, 20, 'green')",
+    (err, res) => {
+      console.log(err, res);
+      pool.end();
+    }
+  );
+
+
+  // try {
+  //   const client = await pool.connect();
+  //   const result = await client.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`);
+  //   client.release();
+  // } catch (err) {
+  //   console.error(err);
+  //   res.send("Error " + err);
+  // }
 })
 
 app.get('/test/:id', (req,res)=>{ //something something rectangles ids
