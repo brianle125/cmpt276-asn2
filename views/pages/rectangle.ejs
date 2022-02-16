@@ -8,7 +8,9 @@
   <%- include ("../partials/nav.ejs") %>
   <div class="container">
   <svg>
-    <rect id="targetRect" width="300" height="100" style="fill:blue"></rect>
+    <% results.forEach(function(r) { %>
+    <rect id="targetRect" width="<%= r.width %>" height="<%= r.height %>"></rect>
+    <% }); %>
 </svg> 
 <table>
     <tr>
