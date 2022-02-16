@@ -8,7 +8,7 @@
   <%- include ("../partials/nav.ejs") %>
   <div class="container">
   <svg>
-    <rect width="300" height="100" style="fill:blue"></rect>
+    <rect id="targetRect" width="300" height="100" style="fill:blue"></rect>
 </svg> 
 <table>
     <tr>
@@ -27,8 +27,10 @@
     </tr>
     <% }); %>
   </table>
-  
+
   <button><a href="/database">Return</a></button>
+
+  
   <form method="post">
     <button>Delete this rectangle?</button>
   </form>
