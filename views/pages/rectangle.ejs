@@ -19,8 +19,9 @@
       <th>Color</th>
     </tr>
     <% results.forEach(function(r) { %>
+      <%= var link = 'rectangle/' + r.name;
       <td><%= r.id %></td>
-      <td><a href="rectangle/<%= r.name %>"><%= r.name %></a></td>
+      <td><a href="rectangle/<%= link %>"><%= r.name %></a></td>
       <td><%= r.width %></td>
       <td><%= r.height %></td>
       <td><%= r.color %></td>
