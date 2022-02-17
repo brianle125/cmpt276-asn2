@@ -86,14 +86,20 @@ app.get('/rectangles/:name', async (req,res)=>{ //something something rectangles
   }
 })
 app.post('/rectangles/:name', async (req, res)=>{
-  try {
-    const client = await pool.connect();
-    const result = await client.query(`DELETE FROM rects WHERE name = '${req.params.name}'`);
-    res.redirect('/database');
-    client.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
+  let buttonValue = req.body.button;
+  if(buttonValue == "delete")
+  {
+    try {
+      const client = await pool.connect();
+      const result = await client.query(`DELETE FROM rects WHERE name = '${req.params.name}'`);
+      res.redirect('/database');
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  } else {
+    res.redirect(`/edit/${req.params.name}`);
   }
 })
 app.post('/edit/:name', async (req, res)=>{
