@@ -96,6 +96,23 @@ app.post('/rectangles/:name', async (req, res)=>{
     res.send("Error " + err);
   }
 })
+app.post('/edit/:name', async (req, res)=>{
+  let name = req.body.name;
+  let width = req.body.width;
+  let height = req.body.height;
+  let color = req.body.color;
+
+  try {
+    const client = await pool.connect();
+    const editQuery = `UPDATE rects set name = '${name}', width = ${width}, height = ${height}, color = '${color}'}`;
+    await client.query(editQuery);
+    res.redirect('/database');
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
 app.get('/add', (req,res)=> {
     res.render('pages/newrectangle')
 })

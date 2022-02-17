@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-US-Compatible" content="IE-edge">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <%- include ("../partials/header.ejs") %>
+        <title>Document</title>
+    </head>
+    <body>
+        <%- include ("../partials/nav.ejs") %>
+        <div class="container">
+            <h1>Edit rectangle</h1>
+
+            <form method="post">
+                <input type="text" name="name" value = "<%= results.at[0].name %>"placeholder="MyRectangle"> <br>
+                <input type="number" name="width" value = "<%= results.at[0].width %>" placeholder="width"> <br>
+                <input type="number" name="height" value = "<%= results.at[0].height %>" placeholder="height"> <br>
+                <input type="text" name="color" value = "<%= results.at[0].color %>" placeholder="e.g. grey"> <br>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </body>
+</html>
