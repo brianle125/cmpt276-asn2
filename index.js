@@ -102,6 +102,17 @@ app.post('/rectangles/:name', async (req, res)=>{
     res.redirect(`/edit/${req.params.name}`);
   }
 })
+app.get('/edit/:name', async (req, res)=>{
+  try {
+    const client = await pool.connect();
+    const result = await client.query(`DELETE FROM rects WHERE name = '${req.params.name}'`);
+    res.render('pages/edit', results);
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
 app.post('/edit/:name', async (req, res)=>{
   let name = req.body.name;
   let width = req.body.width;
