@@ -31,18 +31,6 @@ app.get('/database', async (req, res) => {
       res.send("Error " + err);
     }
 })
-/*
-app.get('/database', async (req,res)=>{
-    try {
-        const result = await pool.query('SELECT * FROM users');
-        const data = {results: result.rows};
-        res.render('pages/db', data);
-    }
-    catch (error) {
-        res.end(error);
-    }
-})
-    */
 app.post('/login', (req,res)=> {
     console.log("post to /login")
     console.log(req.body)
@@ -105,7 +93,8 @@ app.post('/rectangles/:name', async (req, res)=>{
 app.get('/edit/:name', async (req, res)=>{
   try {
     const client = await pool.connect();
-    const result = await client.query(`DELETE FROM rects WHERE name = '${req.params.name}'`);
+    const result = await client.query(`SELECT * FROM rects WHERE name = '${req.params.name}'`);
+    const results = { 'results': (result) ? result.rows : null};
     res.render('pages/edit', results);
     client.release();
   } catch (err) {
