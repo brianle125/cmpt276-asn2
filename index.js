@@ -110,7 +110,7 @@ app.post('/edit/:name', async (req, res)=>{
 
   try {
     const client = await pool.connect();
-    const editQuery = `UPDATE rects set name = '${name}', width = ${width}, height = ${height}, color = '${color}'}`;
+    const editQuery = `UPDATE rects set name = '${name}', width = ${width}, height = ${height}, color = '${color}'`;
     await client.query(editQuery);
     res.redirect('/database');
     client.release();
