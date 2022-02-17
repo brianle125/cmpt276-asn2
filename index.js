@@ -79,7 +79,7 @@ app.post('/rectangles/:name', async (req, res)=>{
   {
     try {
       const client = await pool.connect();
-      const result = await client.query(`DELETE FROM rects WHERE name = '${req.params.name}'`);
+      const result = await client.query(`DELETE FROM rects WHERE id = '${req.params.name}'`);
       res.redirect('/database');
       client.release();
     } catch (err) {
