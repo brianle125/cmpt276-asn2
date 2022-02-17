@@ -60,11 +60,11 @@ app.post('/addrectangle', async (req, res) =>{
 app.get('/redirect', (req, res) => {
   res.render('pages/index');
 }) 
-app.get('/rectangles/:name', async (req,res)=>{ //something something rectangles ids
-  var name = req.params.name;
+app.get('/rectangles/:id', async (req,res)=>{ //something something rectangles ids
+  var id = req.params.id;
   try {
     const client = await pool.connect();
-    const result = await client.query(`SELECT * FROM rects WHERE id = '${name}'`);
+    const result = await client.query(`SELECT * FROM rects WHERE id = '${id}'`);
     const results = { 'results': (result) ? result.rows : null};
     res.render('pages/rectangle', results );
     client.release();
@@ -73,13 +73,13 @@ app.get('/rectangles/:name', async (req,res)=>{ //something something rectangles
     res.send("Error " + err);
   }
 })
-app.post('/rectangles/:name', async (req, res)=>{
+app.post('/rectangles/:id', async (req, res)=>{
   let buttonValue = req.body.button;
   if(buttonValue == "delete")
   {
     try {
       const client = await pool.connect();
-      const result = await client.query(`DELETE FROM rects WHERE id = '${req.params.name}'`);
+      const result = await client.query(`DELETE FROM rects WHERE id = '${req.params.id}'`);
       res.redirect('/database');
       client.release();
     } catch (err) {
@@ -87,13 +87,13 @@ app.post('/rectangles/:name', async (req, res)=>{
       res.send("Error " + err);
     }
   } else {
-    res.redirect(`/edit/${req.params.name}`);
+    res.redirect(`/edit/${req.params.id}`);
   }
 })
-app.get('/edit/:name', async (req, res)=>{
+app.get('/edit/:id', async (req, res)=>{
   try {
     const client = await pool.connect();
-    const result = await client.query(`SELECT * FROM rects WHERE id = '${req.params.name}'`);
+    const result = await client.query(`SELECT * FROM rects WHERE id = '${req.params.id}'`);
     const results = { 'results': (result) ? result.rows : null};
     res.render('pages/edit', results);
     client.release();
@@ -102,7 +102,7 @@ app.get('/edit/:name', async (req, res)=>{
     res.send("Error " + err);
   }
 })
-app.post('/edit/:name', async (req, res)=>{
+app.post('/edit/:id', async (req, res)=>{
   let name = req.body.name;
   let width = req.body.width;
   let height = req.body.height;
@@ -111,7 +111,7 @@ app.post('/edit/:name', async (req, res)=>{
   try {
     const client = await pool.connect();
     const editQuery = `UPDATE rects set name = '${name}', width = ${width}, height = ${height}, color = '${color}'
-    WHERE id = ${req.params.name}`;
+    WHERE id = ${req.params.id}`;
     await client.query(editQuery);
     res.redirect('/database');
     client.release();
