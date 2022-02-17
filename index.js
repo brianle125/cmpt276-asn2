@@ -49,7 +49,7 @@ app.post('/addrectangle', async (req, res) =>{
 
   try {
     const client = await pool.connect();
-    const result = await client.query(`INSERT INTO rects VALUES(${id}, '${name}', ${width}, ${height}, '${color}')`);
+    const result = await client.query(`INSERT INTO rects VALUES(DEFAULT, '${name}', ${width}, ${height}, '${color}')`);
     res.redirect('/database');
   } catch (err) {
     console.error(err);
@@ -64,7 +64,7 @@ app.get('/rectangles/:name', async (req,res)=>{ //something something rectangles
   var name = req.params.name;
   try {
     const client = await pool.connect();
-    const result = await client.query(`SELECT * FROM rects WHERE name = '${name}'`);
+    const result = await client.query(`SELECT * FROM rects WHERE id = '${name}'`);
     const results = { 'results': (result) ? result.rows : null};
     res.render('pages/rectangle', results );
     client.release();
