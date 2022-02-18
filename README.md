@@ -1,8 +1,8 @@
 # Rectangles
 
-A app to store, edit and remove rectangles from a Heroku database.
-
-Currently debugging heroku launch
+A app to store, edit and remove rectangles utilizing a Heroku database.
+<br>
+App link: https://apprectangle276.herokuapp.com/
 
 
 
