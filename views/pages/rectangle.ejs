@@ -6,12 +6,12 @@
 
 <body>
   <%- include ("../partials/nav.ejs") %>
-  <div class="container">
   <svg>
     <% results.forEach(function(r) { %>
     <rect id="targetRect" width="<%= r.width %>%" height="<%= r.height %>%" fill="<%= r.color %>"></rect>
     <% }); %>
-</svg> 
+  </svg> 
+  <div class="container">
 <table>
     <tr>
       <th>ID</th>
