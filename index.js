@@ -41,7 +41,6 @@ app.post('/login', (req,res)=> {
     res.send('got it.')
 })
 app.post('/addrectangle', async (req, res) =>{
-  let id = req.body.id;
   let name = req.body.name;
   let width = req.body.width;
   let height = req.body.height;

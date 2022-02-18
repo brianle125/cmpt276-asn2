@@ -5,13 +5,13 @@
 </head>
 
 <body>
-  <%- include ("../partials/nav.ejs") %>
-  <svg>
-    <% results.forEach(function(r) { %>
-    <rect id="targetRect" width="<%= r.width %>%" height="<%= r.height %>%" fill="<%= r.color %>"></rect>
-    <% }); %>
-  </svg> 
+  <%- include ("../partials/nav.ejs") %> 
   <div class="container">
+    <svg>
+      <% results.forEach(function(r) { %>
+      <rect id="targetRect" width="<%= r.width %>%" height="<%= r.height %>%" fill="<%= r.color %>"></rect>
+      <% }); %>
+    </svg>
 <table>
     <tr>
       <th>ID</th>
